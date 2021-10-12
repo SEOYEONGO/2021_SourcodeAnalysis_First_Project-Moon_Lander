@@ -92,6 +92,13 @@ public class PlayerRocket {
      */
     public int rocketImgHeight;
     
+    /**
+     * 
+     * Player's remaining lives and score
+     */
+    private int remainingLives, score;
+    private boolean inGame = false;
+    private boolean dying = false;
     
     public PlayerRocket()
     {
@@ -108,6 +115,8 @@ public class PlayerRocket {
         random = new Random();
         
         ResetPlayer();
+        remainingLives = 3;
+        score = 0;
         
         speedAccelerating = 2;
         speedStopping = 1;
@@ -226,6 +235,14 @@ public class PlayerRocket {
                 if(y<0) y=0;
         	}
     	}
+    }
+    
+    private void death() {
+    	remainingLives--;
+    	if(remainingLives ==0) {
+    		inGame = false;
+    	}
+    	
     }
     
     public void Draw(Graphics2D g2d)
